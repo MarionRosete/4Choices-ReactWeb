@@ -16,16 +16,18 @@ const Register = () => {
         const newuser = {fullname, email, password, password_confirmation};
         console.log(newuser);
         fetch('http://localhost:8000/api/register',{
-            method:'POST' ,
-            header:{ 'Accept': 'Application/json','Content-type':'Application/json' },
-            body: JSON.stringify(newuser)
-        })
+            header:{ 'accept': 'application/json'},
+            method:'PUSH',
+            credentials: 'include',
+            
+        }).then(response => response.json())
+         
     }
         return (
           <>
          
          
-            <center class>
+            <center >
                 <form onSubmit={handleSubmit}>
                     <h1 className="text-blue-900 text-4x1 font-bold p-2">Register</h1>
                     <p  className="text-lg text-blue-900 p-3">Welcome to Exam Mate</p>
