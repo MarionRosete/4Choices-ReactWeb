@@ -11,16 +11,15 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [password_confirmation, setPasswordcon] = useState('');
 
-    const handleSubmit = (e) => {
+ const handleSubmit = (e) => {
         e.preventDefault();
         const newuser = {fullname, email, password, password_confirmation};
         console.log(newuser);
-        fetch('http://localhost:8000/api/register',{
-            header:{ 'accept': 'application/json'},
-            method:'PUSH',
-            credentials: 'include',
-            
-        }).then(response => response.json())
+        fetch ("http://localhost:8000/api/register",{
+            headers:{"Content-Type":'application/json', "accept":'application/json'},
+            method:'POST',
+            body:JSON.stringify(newuser),
+        }).then(response =>response.json()).catch(response=>{console.error(response.message);})
          
     }
         return (
