@@ -11,26 +11,29 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [password_confirmation, setPasswordcon] = useState('');
 
- const handleSubmit = (e) => {
+    const handleSubmit = (e) => {
+            e.preventDefault();
+            const newuser = {fullname, email, password, password_confirmation};
+            console.log(newuser);
+            fetch ("http://localhost:8000/api/register",{
+                headers:{"Content-Type":'application/json', "accept":'application/json'},
+                method:'POST',
+                body:JSON.stringify(newuser),
+            }).then(response =>{console.log(response.json())}).catch(response=>{console.error(response.message);})
+            
+        }
+    const googleAuth=(e)=>{
         e.preventDefault();
-        const newuser = {fullname, email, password, password_confirmation};
-        console.log(newuser);
-        fetch ("http://localhost:8000/api/register",{
-            headers:{"Content-Type":'application/json', "accept":'application/json'},
-            method:'POST',
-            body:JSON.stringify(newuser),
-        }).then(response =>response.json()).catch(response=>{console.error(response.message);})
-         
-    }
+            fetch("http://localhost:8000/api/login/google-redirect",{method:'get'}.then(response =>{console.log(response.json())}))
+        };
         return (
           <>
-         
-         
             <center >
-                <form onSubmit={handleSubmit}>
                     <h1 className="text-blue-900 text-4x1 font-bold p-2">Register</h1>
                     <p  className="text-lg text-blue-900 p-3">Welcome to Exam Mate</p>
-                          <p className="text-lg text-blue-900 p-3">Create Account</p>
+                    <p className="text-lg text-blue-900 p-3">Create Account</p>
+                    <button onClick={googleAuth}>Sign in with google</button>
+                    <form onSubmit={handleSubmit}>
                     <input className="p-2 m-5" type="text" placeholder="Fullname" value={fullname} onChange={(e)=>setName(e.target.value)}/><br></br>
                     <input className="p-2 m-5" type="email" placeholder="Email" value={email} onChange={(e)=>setEmail(e.target.value)} /><br></br>
                     <input className="p-2 m-5" type="password" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/><br></br>
@@ -42,12 +45,8 @@ const Register = () => {
                     <p>{email}</p>
                     <p>{password}</p>
                     <p>{password_confirmation}</p>
-
-                    
                 </form>
             </center>
-  
-          
         </>
        )
     
