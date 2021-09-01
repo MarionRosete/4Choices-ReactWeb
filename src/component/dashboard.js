@@ -1,14 +1,14 @@
 import React from 'react'
-import {  } from 'react-native'
 
-const dashboard = () => {
+
+const Dashboard = () => {
     return (
         <>
-        
+        <p>Hello Teacher</p>
         </>
     )
 }
 
-export default dashboard
+export default Dashboard
 
 
