@@ -6,12 +6,13 @@ import { Link} from 'react-router-dom'
 
 const Login = () => {
     
-
+    
     const [email, setEmail] = useState('');
     const [password,  setPassword] = useState('');
     const[printRes, resJson]= useState('');
-    const handleLogin=(e)=>{
-        e.preventDefault()
+    const [teacher, authTeacher]= useState();
+    const handleLogin=(event)=>{
+        event.preventDefault()
         const user={email, password}
         console.log(user)
         fetch('http://localhost:8000/api/login',{
@@ -19,7 +20,12 @@ const Login = () => {
             headers:{'content-type':'application/json', 'accept':'application/json'},
             body:JSON.stringify(user)
             }
-        ).then(response=>(response.json().then(promise=>{resJson(promise.message); if(response==="successful"){window.location.replace('{{route("http://localhost:3000/neededtoprotect/dashboard"}}');}}))
+        ).then(response=>(response.json().then(promise=>{resJson(promise.message); authTeacher(teacher);
+             if(promise.message==="successful"){console.log("successful");window.location.replace( "/Protected/Dashboard");}
+                else{   
+                    console.log("not working")   
+            };
+            }))
             )
     }
         return (
