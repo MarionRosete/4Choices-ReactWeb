@@ -1,8 +1,7 @@
 
-import React, { useState } from 'react'
+import React, { useState,  } from 'react'
 import { Link} from 'react-router-dom'
-
-
+import App from '../App'
 
 const Login = () => {
     
@@ -10,7 +9,9 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password,  setPassword] = useState('');
     const[printRes, resJson]= useState('');
-    const [teacher, authTeacher]= useState();
+    
+    
+    
     const handleLogin=(event)=>{
         event.preventDefault()
         const user={email, password}
@@ -20,10 +21,12 @@ const Login = () => {
             headers:{'content-type':'application/json', 'accept':'application/json'},
             body:JSON.stringify(user)
             }
-        ).then(response=>(response.json().then(promise=>{resJson(promise.message); authTeacher(teacher);
-             if(promise.message==="successful"){console.log("successful");window.location.replace( "/Protected/Dashboard");}
-                else{   
-                    console.log("not working")   
+        ).then(response=>(response.json().then(promise=>{resJson(promise.message);
+             if(promise.message==="successful"){
+                    console.log("successful");window.location.replace( "/Dashboard");
+                    localStorage.setItem('token', promise.token)
+            }else{   
+                    console.log("unauthorized")   
             };
             }))
             )
@@ -39,6 +42,7 @@ const Login = () => {
                           <p>Sign in with google</p>
                     <p className="text-gray-300">or login with email</p>
                    <p className="text-red-700">{printRes}</p>
+                 
                     <input className="p-2 m-5" type="email" placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)}/><br></br>
                     <input className="p-2 m-5" type="password" placeholder="Password"  value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
                     <button className="bg-blue-700 p-2 w-40 ">Sign In</button> 
