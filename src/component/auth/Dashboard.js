@@ -1,21 +1,30 @@
 
-import { withRouter } from 'react-router-dom'
-import React, { useState,  } from 'react'
-const Dashboard = () => {
-    const [user, setUser]=useState('')
-        fetch(
-            'http://127.0.0.1:8000/api/dashboard/{}',{headers:{
-                'accept':'application/json','content-type':'application/json',
-                 'authorization':'Bearer Token: '+localStorage.getItem('token')
-             },method:"GET"}).then(
-                response =>{console.log(response.json().then(promise=>setUser(promise.fullname))) }
-            )
-        
+import { withRouter, Redirect,  } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+const Dashboard = (props) => {
+     const [user, setUser]= useState('')
     
+        useEffect(()=>
+            {
+            if(localStorage.getItem('token')!=null){
+                fetch(
+                    'http://127.0.0.1:8000/api/dashboard/{}',{
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
+                    }
+                    ).then(
+                        response =>response.json().then(resjson=>{console.log(resjson.user)})
+                    )
+            }else{
+                console.log("please login")
+                return <Redirect to={{pathname: '/register', state:{from: props.location}}}/>
+            }
+          
+            }
+        )      
     return (
         <>
-        <p>Hello Teacher</p>
-        <p>{user}</p>
+        <h1>Hello Teacher { user.id }</h1>
         </>
     )
 }
