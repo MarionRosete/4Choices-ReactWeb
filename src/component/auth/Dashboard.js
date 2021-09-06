@@ -1,10 +1,10 @@
 
-import { withRouter, Redirect,  } from 'react-router-dom'
+import { withRouter,   } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 const Dashboard = (props) => {
      const [user, setUser]= useState('')
-    
+
         useEffect(()=>
             {
             if(localStorage.getItem('token')!=null){
@@ -13,18 +13,18 @@ const Dashboard = (props) => {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                     }
                     ).then(
-                        response =>response.json().then(resjson=>{console.log(resjson.user)})
+                        response =>response.json().then(resjson=>{console.log(setUser(resjson.user))})
                     )
             }else{
                 console.log("please login")
-                return <Redirect to={{pathname: '/register', state:{from: props.location}}}/>
+                
             }
           
             }
         )      
     return (
         <>
-        <h1>Hello Teacher { user.id }</h1>
+        <h1>Hello Teacher { user.fullname }</h1>
         </>
     )
 }
