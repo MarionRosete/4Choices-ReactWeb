@@ -1,9 +1,9 @@
 
 import { withRouter,   } from 'react-router-dom'
-import { useState, useEffect } from 'react'
+import {  useEffect } from 'react'
 
-const Dashboard = (props) => {
-     const [user, setUser]= useState('')
+const Dashboard = () => {
+     
 
         useEffect(()=>
             {
@@ -13,18 +13,39 @@ const Dashboard = (props) => {
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                     }
                     ).then(
-                        response =>response.json().then(resjson=>{console.log(setUser(resjson.user))})
+                        response =>response.json().then(resjson=>{console.log(resjson.user)})
                     )
             }else{
-                console.log("please login")
-                
+                console.log("please login")   
             }
-          
             }
-        )      
+        )
+        const handleLogout=(event)=>{
+            event.preventDefault();
+              fetch(
+                'http://localhost:8000/api/dashboard/logout',{
+                 method:'POST',
+                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}
+                }).then(
+                    response=>response.json().then(
+                        resjson=>{console.log(resjson.token);
+                             if(resjson.message==="Logged out"){
+                                localStorage.removeItem('token');
+                                window.location.replace( "/Dashboard");
+                             }else{
+                                console.log("unauthencated")
+                             }
+                        }
+                    )
+                )
+            
+        }      
     return (
         <>
-        <h1>Hello Teacher { user.fullname }</h1>
+       
+        <span className="font-semibold text-xl tracking-tight">Hello</span>
+        <br></br>
+        <button className="bg-blue-700 p-2 w-40 " onClick={handleLogout}>Logout</button>
         </>
     )
 }
