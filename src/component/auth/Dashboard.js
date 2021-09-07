@@ -3,25 +3,26 @@ import { withRouter,   } from 'react-router-dom'
 import {  useEffect, useState } from 'react'
 
 const Dashboard = () => {
-        const urlUser = 'http://127.0.0.1:8000/api/dashboard/{}'
+        
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         const[user,setUser]=useState(null);
-        const getUser=()=>{
-           
-            fetch(
-                    urlUser,{
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
-                    }
-                ).then(
-                    response =>response.json().then(resjson=>{console.log(resjson.user); setUser(resjson.user)})
-                )
-        }
+        
 
         useEffect(()=>{
-         
-          getUser()
+
+            const urlUser = 'http://127.0.0.1:8000/api/dashboard/{}'
+            const abortCtrl = new AbortController();
             
-        })
+            fetch(
+                urlUser,{
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
+                methods:'GET'
+                }
+            ).then(
+                response =>response.json().then(resjson=>{console.log(resjson.user); setUser(resjson.user)})
+            ) 
+            return () => abortCtrl.abort();
+        },[])
        
 
         const handleLogout=()=>{
