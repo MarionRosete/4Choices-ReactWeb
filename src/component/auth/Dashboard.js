@@ -1,29 +1,32 @@
 
 import { withRouter,   } from 'react-router-dom'
-import {  useEffect } from 'react'
+import {  useEffect, useState } from 'react'
 
 const Dashboard = () => {
-     
-
-        useEffect(()=>
-            {
-            if(localStorage.getItem('token')!=null){
-                fetch(
-                    'http://127.0.0.1:8000/api/dashboard/{}',{
+        const urlUser = 'http://127.0.0.1:8000/api/dashboard/{}'
+        const urlLogout = 'http://localhost:8000/api/dashboard/logout'
+        const[user,setUser]=useState(null);
+        const getUser=()=>{
+           
+            fetch(
+                    urlUser,{
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
                     }
-                    ).then(
-                        response =>response.json().then(resjson=>{console.log(resjson.user)})
-                    )
-            }else{
-                console.log("please login")   
-            }
-            }
-        )
-        const handleLogout=(event)=>{
-            event.preventDefault();
+                ).then(
+                    response =>response.json().then(resjson=>{console.log(resjson.user); setUser(resjson.user)})
+                )
+        }
+
+        useEffect(()=>{
+         
+          getUser()
+            
+        })
+       
+
+        const handleLogout=()=>{
               fetch(
-                'http://localhost:8000/api/dashboard/logout',{
+                urlLogout,{
                  method:'POST',
                  headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}
                 }).then(
@@ -43,7 +46,7 @@ const Dashboard = () => {
     return (
         <>
        
-        <span className="font-semibold text-xl tracking-tight">Hello</span>
+        <span className="font-semibold text-xl tracking-tight">Hello {user=== null?'fetching...':user.fullname}</span>
         <br></br>
         <button className="bg-blue-700 p-2 w-40 " onClick={handleLogout}>Logout</button>
         </>
