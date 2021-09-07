@@ -1,7 +1,8 @@
 
 import React, { useState,  } from 'react'
 import { Link} from 'react-router-dom'
-import App from '../App'
+
+
 
 const Login = () => {
 
@@ -16,19 +17,24 @@ const Login = () => {
         event.preventDefault()
         const user={email, password}
         console.log(user)
-        fetch('http://localhost:8000/api/login',{
+        fetch('http://localhost:8000/api/login',
+            {
             method:'post',
             headers:{'content-type':'application/json', 'accept':'application/json'},
             body:JSON.stringify(user)
             }
-        ).then(response=>(response.json().then(promise=>{resJson(promise.message);
-             if(promise.message==="successful"){
-                    console.log("successful");window.location.replace( "/Dashboard");
-                    localStorage.setItem('token', promise.token)
-            }else{
-                    console.log("unauthorized")
-            };
-            }))
+        ).then(response=>(
+                    response.json().then(resjson=>{resJson(resjson.message);
+                        if(resjson.message==="successful"){
+                            console.log("successful");window.location.replace( "/Dashboard");
+                            localStorage.setItem('token', resjson.token)
+                            localStorage.setItem('status', resjson.message)
+                        }else{
+                                console.log("unauthorized")
+                        };
+                        }
+                    )
+                )
             )
     }
         return (
@@ -55,8 +61,8 @@ const Login = () => {
 
                             <div className="mt-5">
                                 <p className="text-red-500">{printRes}</p>
-                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="password" placeholder="Password"  value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
                                 <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="email" placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)}/><br></br>
+                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="password" placeholder="Password"  value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
                                 <button className="rounded-sm bg-blue-500 text-white font-bold font-sans p-2 w-80 ">Sign In</button>
                             </div>
                             <div className="flex justify-between py-3 text-blue-500 text-xs w-80 m-auto">
@@ -67,8 +73,6 @@ const Login = () => {
                             <div className="inline-flex justify-between">
                                 <span className="text-gray-700 text-xs">New to Exam Mate?</span>
                                 <span className="text-xs text-blue-500"><Link to="/Register">&nbsp;Register now!</Link></span>
-                                <p>{email}</p>
-                                <p>{password}</p>
                             </div>
                         </div>
                     </form>
