@@ -1,12 +1,13 @@
 
-import { withRouter,   } from 'react-router-dom'
+import { Link, withRouter    } from 'react-router-dom'
 import {  useEffect, useState } from 'react'
 
 const Dashboard = () => {
         
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
-        const[user,setUser]=useState(null);
         
+        const[user,setUser]=useState(null);
+       
 
         useEffect(()=>{
 
@@ -43,13 +44,18 @@ const Dashboard = () => {
                     )
                 )
             
-        }      
+        }
+      
+     
+           
     return (
         <>
        
         <span className="font-semibold text-xl tracking-tight">Hello {user=== null?'fetching...':user.fullname}</span>
         <br></br>
         <button className="bg-blue-700 p-2 w-40 " onClick={handleLogout}>Logout</button>
+        <br></br>
+        <button className="bg-blue-700 p-2 w-40 " ><Link to='/CreateExam'>Create Exam</Link></button>
         </>
     )
 }
