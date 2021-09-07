@@ -48,15 +48,13 @@ const Login = () => {
                           <p>Sign in with google</p>
                     <p className="text-gray-300">or login with email</p>
                    <p className="text-red-700">{printRes}</p>
-                   
                     <input className="p-2 m-5" type="email" placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)}/><br></br>
                     <input className="p-2 m-5" type="password" placeholder="Password"  value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
                     <button className="bg-blue-700 p-2 w-40 ">Sign In</button> 
                     </form>     
                     <p className="text-gray-400" >New to Exam Mate?  </p>
                     <p className="text-lg text-blue-900 p-3"><Link to="/Register">Register now!</Link></p>
-                    <p>{email}</p>
-                    <p>{password}</p>
+                
             </center>
   
           

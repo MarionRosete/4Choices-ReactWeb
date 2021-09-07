@@ -19,7 +19,20 @@ const Register = () => {
                 headers:{"Content-Type":'application/json', "accept":'application/json'},
                 method:'POST',
                 body:JSON.stringify(newuser),
-            }).then(response=>(response.json().then(promise=>resJson(promise.errors))))
+                }
+            ).then(response=>(
+                response.json().then(resjson=>{resJson(resjson.message);
+                    if(resjson.message==="successful"){
+                        console.log("successful");window.location.replace( "/Dashboard");
+                        localStorage.setItem('token', resjson.token)
+                        localStorage.setItem('status', resjson.message)
+                    }else{   
+                            console.log("unauthorized")   
+                    };
+                    }
+                )
+            )
+        )
             
         }
    
@@ -42,10 +55,7 @@ const Register = () => {
                     <button className="bg-blue-700 p-2 w-40 ">Sign Up!</button>
                     <p className="text-gray-400">Have an Account?</p>
                     <p className="text-lg text-blue-900 p-3"><Link to="/"> Sign In!</Link></p>
-                    <p>{fullname}</p>
-                    <p>{email}</p>
-                    <p>{password}</p>
-                    <p>{password_confirmation}</p>
+                
                 </form>
             </center>
         </>

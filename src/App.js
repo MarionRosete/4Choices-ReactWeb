@@ -21,6 +21,7 @@ function App(){
             <ProtectedRoutes exact path="/Dashboard" component={Dashboard} /> 
             <ProtectedRoutes exact path="/CreateExam" component={CreateExam}/>
         </Switch>
+     
       </Router>
      
     </>
