@@ -61,7 +61,7 @@ const Login = () => {
 
 
             <div className="flex bg-blue-200 justify-center w-screen h-screen text-gray-700">
-                <div className="flex-1 shadow-lg m-8 rounded-2xl bg-white justify-center p-4">
+                <div className="shadow-lg m-8 rounded-2xl bg-white p-4">
                     <form onSubmit={handleLogin}>
                         <div className="text-center">
                             <h1 className="text-xl text-blue-600 p-2">Logo here</h1>
