@@ -7,20 +7,28 @@ const Dashboard = () => {
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         
         const[user,setUser]=useState(null);
-       
+
 
         useEffect(()=>{
-
+            
             const urlUser = 'http://127.0.0.1:8000/api/dashboard/{}'
             const abortCtrl = new AbortController();
             
             fetch(
                 urlUser,{
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`},
-                methods:'GET'
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'},
+           
                 }
             ).then(
-                response =>response.json().then(resjson=>{console.log(resjson.user); setUser(resjson.user)})
+                response =>response.json().then(resjson=>{console.log(resjson); 
+                                if(resjson.message==="authentic"){
+                                    setUser(resjson.user);
+                                }else{
+                                    localStorage.removeItem('token');
+                                    window.location.replace( "/Dashboard");
+                                }
+                            }
+                        )
             ) 
             return () => abortCtrl.abort();
         },[])
