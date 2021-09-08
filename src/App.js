@@ -15,8 +15,10 @@ function App(){
       <Router>
         <Switch>
             <Route exact path="/Register" component={Register}/>
+            <Route exact path="/" component={Login}>
             <Route exact path="/" component={Login}/>
               {token !=null ? <Redirect to="/dashboard" /> : <Login />}
+            </Route>
          
             <ProtectedRoutes exact path="/Dashboard" component={Dashboard} /> 
             <ProtectedRoutes exact path="/CreateExam" component={CreateExam}/>
