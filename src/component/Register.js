@@ -11,7 +11,7 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [password_confirmation, setPasswordcon] = useState('');
     const [msg, msgSet] = useState('');
-    const [err, errSet] = useState('');
+    
     const handleSubmit = (e) => {
             e.preventDefault();
             const newuser = {fullname, email, password, password_confirmation};
@@ -22,13 +22,13 @@ const Register = () => {
                 body:JSON.stringify(newuser),
                 }
             ).then(response=>(
-                response.json().then(resjson=>{msgSet(resjson.message); errSet(resjson.errors);
+                response.json().then(resjson=>{msgSet(resjson.message);
                         }
                     )
                 )
             )
         }
-   
+
         return (
           <>
             <center >
@@ -45,15 +45,15 @@ const Register = () => {
                     <input className="p-2 m-5" type="password" placeholder="Password" required value={password} onChange={(e)=>setPassword(e.target.value)}/><br></br>
                 
                     <input className="p-2 m-5" type="password" placeholder="Confirm Password" required value={password_confirmation} onChange={(e)=>setPasswordcon(e.target.value)}/><br></br>
-                    <button className="bg-blue-700 p-2 w-40 ">Sign Up!</button>
+                    <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 bg-blue-700 p-2 w-40 ">Sign Up!</button>
                     <p className="text-gray-400">Have an Account?</p>
                     <p className="text-lg text-blue-900 p-3"><Link to="/"> Sign In!</Link></p>
-                
+
                 </form>
             </center>
         </>
        )
-    
+
 }
 
 
