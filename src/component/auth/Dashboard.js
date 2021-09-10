@@ -7,7 +7,7 @@ const Dashboard = () => {
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         
         const[user,setUser]=useState(null);
-
+        const[email,verifyEmail]=useState(null);
 
         useEffect(()=>{
             
@@ -21,11 +21,10 @@ const Dashboard = () => {
                 }
             ).then(
                 response =>response.json().then(resjson=>{console.log(resjson); 
-                                if(resjson.message==="authentic"){
+                                if(resjson.success===true){
                                     setUser(resjson.user);
-                                }else{
-                                    localStorage.removeItem('token');
-                                    window.location.replace( "/Dashboard");
+                                }else if(resjson.message==="Your email address is not verified."){
+                                    verifyEmail(resjson.message)
                                 }
                             }
                         )
@@ -59,7 +58,7 @@ const Dashboard = () => {
     return (
         <>
        
-        <span className="font-semibold text-xl tracking-tight">Hello {user=== null?'fetching...':user.fullname}</span>
+        <span className="font-semibold text-xl tracking-tight"> {user=== null? email :"Hello "+user.fullname}</span>
         <br></br>
         <button className="bg-blue-700 p-2 w-40 " onClick={handleLogout}>Logout</button>
         <br></br>

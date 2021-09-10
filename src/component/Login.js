@@ -25,7 +25,7 @@ const Login = () => {
             }
         ).then(response=>(
                     response.json().then(resjson=>{resJson(resjson.message);
-                        if(resjson.message==="successful"){
+                        if(resjson.success===true){
                             console.log("successful");window.location.replace( "/Dashboard");
                             localStorage.setItem('token', resjson.token)
                             localStorage.setItem('status', resjson.message)
