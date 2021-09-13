@@ -26,7 +26,7 @@ const Login = () => {
         ).then(response=>(
                     response.json().then(resjson=>{resJson(resjson.message);
                         if(resjson.success===true){
-                            console.log("successful");window.location.replace( "/Dashboard");
+                            window.location.replace( "/Dashboard");
                             localStorage.setItem('token', resjson.token)
                             localStorage.setItem('status', resjson.message)
                         }else{
@@ -87,7 +87,7 @@ const Login = () => {
                             </div>
                             <div className="flex justify-between py-3 text-blue-500 text-xs w-80 m-auto">
                                 <div className="inline"><span className="inline align-middle"><input type="checkbox" name="" id=""/></span> Keep me loggedin</div>
-                                <div className="inline">FORGOT PASSWORD</div>
+                                <div className="inline"><Link to="/Forgetpassword">FORGOT PASSWORD</Link></div>
                             </div>
 
                             <div className="inline-flex justify-between">

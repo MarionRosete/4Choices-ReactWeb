@@ -7,11 +7,11 @@ const Dashboard = () => {
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         
         const[user,setUser]=useState(null);
-        const[email,verifyEmail]=useState(null);
+      
 
         useEffect(()=>{
             
-            const urlUser = 'http://127.0.0.1:8000/api/dashboard/{}'
+            const urlUser = 'http://127.0.0.1:8000/api/dashboard/user'
             const abortCtrl = new AbortController();
             
             fetch(
@@ -20,12 +20,16 @@ const Dashboard = () => {
            
                 }
             ).then(
-                response =>response.json().then(resjson=>{console.log(resjson); 
+                response =>response.json().then(resjson=>{console.log(resjson); console.log(resjson)
                                 if(resjson.success===true){
                                     setUser(resjson.user);
-                                }else if(resjson.message==="Your email address is not verified."){
-                                    verifyEmail(resjson.message)
+                    
+                                }else{
+                                    localStorage.removeItem('token')
+                                    window.location.replace( "/");
                                 }
+                                
+                                
                             }
                         )
             ) 
@@ -43,7 +47,7 @@ const Dashboard = () => {
                         resjson=>{console.log(resjson.token);
                              if(resjson.message==="Logged out"){
                                 localStorage.removeItem('token');
-                                window.location.replace( "/Dashboard");
+                                window.location.replace( "/");
                              }else{
                                 console.log("unauthencated")
                              }
@@ -58,7 +62,7 @@ const Dashboard = () => {
     return (
         <>
        
-        <span className="font-semibold text-xl tracking-tight"> {user=== null? email :"Hello "+user.fullname}</span>
+        <span className="font-semibold text-xl tracking-tight"> {user=== null? "fetching" :"Hello "+user.fullname}</span>
         <br></br>
         <button className="bg-blue-700 p-2 w-40 " onClick={handleLogout}>Logout</button>
         <br></br>
