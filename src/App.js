@@ -18,7 +18,6 @@ function App(){
             <Route exact path="/Register" component={Register}/>
             <Route exac path="/Forgetpassword" component={FindYourAccount}/>
             <Route exact path="/" component={Login}>
-            <Route exact path="/" component={Login}/>
               {token !=null ? <Redirect to="/dashboard" /> : <Login />}
             </Route>
             <Route exact path="/EmailVerification" component={EmailVerification}/>

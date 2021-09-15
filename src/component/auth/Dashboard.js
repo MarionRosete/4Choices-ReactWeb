@@ -25,8 +25,8 @@ const Dashboard = () => {
                                     setUser(resjson.user);
                     
                                 }else{
-                                    localStorage.removeItem('token')
-                                    window.location.replace( "/");
+                                    localStorage.removeItem('token');
+                                    window.location.reload();
                                 }
                                 
                                 
