@@ -67,16 +67,25 @@ const Dashboard = () => {
     return (
         <>
         
-                <span className="font-semibold text-xl tracking-tight"> {user=== null? "fetching..." :"Hello "+user.user}</span>
-                <button className="bg-blue-700 p-2 w-40 " ><Link to='/CreateExam'>Create Exam</Link></button>
-                <button className="float-right bg-blue-700 p-2 w-40" onClick={handleLogout}>Logout</button>
-                
-        <div className="shadow-lg m-8 rounded-2xl g-gray-500 p-4">
-        <div className="text-center">
-       {user.success===false?"No Created at the moment":"Exam Exist"}
-       <button className="float-right bg-blue-700  w-20" onClick={handleActivate}>Activate</button>
+        <div class ="min-h-screen bg-white"> 
+  <div class ="flex flex-col bg-blue-900 h-3 p-8">
+  </div>
+    <div class=" bg-blue-200 h-screen w-64">
+      <div class = "flex flex-col justify-center gap-y-6 px-16 ">
+        <span class=" text-blue-800 font-medium py-10 px-6">Iris Suaner</span>
+        <button class= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md "> Create Quiz </button>
+            <div class =" flex flex-col place-items-start gap-y-1">
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Dashboard </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Calendar </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Library </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Classes </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Settings </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Profile </button>
+              <button class= "text-blue-900 hover:text-blue-600 font-medium "> Logout </button>
+           </div>
         </div>
-        </div>
+      </div>
+</div>
         </>
     )
 }
