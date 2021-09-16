@@ -37,24 +37,7 @@ const Login = () => {
                 )
             )
     }
-    const authGoogle=(event)=>{
-        event.preventDefault()
-        fetch('http://localhost:8000/api/login/google-redirect',{method:"GET",headers:{'content-type':'application/json', 'accept':'application/json'},}
-        ).then(response=>(
-            response.json().then(resjson=>{resJson(resjson.message);
-                if(resjson.success===true){
-                    console.log("successful");window.location.replace( "/Dashboard");
-                    localStorage.setItem('token', resjson.token)
-                    localStorage.setItem('status', resjson.message)
-                }else{
-                        console.log("unauthorized")
-                };
-                }
-            )
-        )
-    )
-  
-    }
+    
     const onSuccess = (res) => {
         
         console.log('Login Success: currentUser:', res.profileObj);
@@ -110,8 +93,8 @@ const Login = () => {
 
                             <div className="mt-5">
                                 <p className="text-red-500">{printRes}</p>
-                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="email" placeholder="Email"  value={email} onChange={(e)=>setEmail(e.target.value)}/><br></br>
-                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="password" placeholder="Password"  value={password} onChange={(e)=>setPassword(e.target.value)} /><br></br>
+                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="email" placeholder="Email"  value={email} required onChange={(e)=>setEmail(e.target.value)}/><br></br>
+                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="password" placeholder="Password"  value={password} required onChange={(e)=>setPassword(e.target.value)} /><br></br>
                                 <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-sm bg-blue-500 text-white font-bold font-sans p-2 w-80 ">Sign In</button>
                             </div>
                             <div className="flex justify-between py-3 text-blue-500 text-xs w-80 m-auto">

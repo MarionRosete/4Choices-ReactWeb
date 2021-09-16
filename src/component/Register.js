@@ -73,9 +73,8 @@ const Register = () => {
                     <h1 className="text-blue-900 text-4x1 font-bold p-2">Register</h1>
                     <p  className="text-lg text-blue-900 p-3">Welcome to Exam Mate</p>
                     <p className="text-lg text-blue-900 p-3">Create Account</p>
-                    <button onClick={() => window.open( "http://localhost:8000/api/login/google-redirect")}>Sign in with google</button>
                     <form onSubmit={handleSubmit}>
-                    <p>{msg.message}</p>
+                   
                     <p>{msgErr.password}</p>
                     <p>{msgErr.email}</p>
                     <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="text" placeholder="Fullname" required value={fullname} onChange={(e)=>setName(e.target.value)}/><br></br>

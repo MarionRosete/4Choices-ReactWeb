@@ -20,12 +20,10 @@ const Register = () => {
                 body:JSON.stringify(newexam),
             }).then(response=>(
                 response.json().then(resjson=>{setStatus(resjson.message);
-                    if(resjson.message==="successful"){
-                        console.log("successful");window.location.replace( "/Dashboard");
-                        localStorage.setItem('token', resjson.token)
-                        localStorage.setItem('status', resjson.message)
+                    if(resjson.success===true){
+                        console.log("Created exam");window.location.replace( "/Dashboard");
                     }else{   
-                            console.log("unauthorized")   
+                           console.log("create exam failed")
                     };
                     }
                 )
