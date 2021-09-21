@@ -1,6 +1,7 @@
 
 import {  withRouter, Link  } from 'react-router-dom'
 import {  useEffect, useState,  } from 'react'
+import QandA from './QandA'
 
 
 
@@ -15,9 +16,9 @@ const Dashboard = () => {
         const[user,setUser]=useState('');
         
         const [exam,setExam]=useState([]);
-        console.log(exam)
+     
        
-    
+ 
         useEffect(()=>{
             
            
@@ -30,9 +31,10 @@ const Dashboard = () => {
            
                 }
             ).then(
-                response =>response.json().then(resjson=>{ setExam(resjson.exam);
+                response =>response.json().then(resjson=>{  console.log(resjson.exam)
                     if(resjson.auth===true){
                         setUser(resjson);
+                        setExam(resjson.exam);
                         console.log(resjson)
                     }else{
                         localStorage.removeItem('token');
@@ -69,7 +71,7 @@ const Dashboard = () => {
      
            
     return (
-
+       
         <>
        
         <div className ="grid grid-flow-col min-h-screen bg-white">
@@ -99,21 +101,38 @@ const Dashboard = () => {
             </>
             :
             <>
-            <div className="min-h-screen p-10 bg-white ">
-              
-              <div className="flex flex-col bg-blue-100 justify-between rounded-2xl p-4 md:p-8 ">
-                <ul>
-              {exam.map(item=><li className=" text-blue-800 font-medium text-xl py-5 px-10" key={item}>Name: {item.name},<br/> Subject: {item.subject},<br/> Description: {item.description}<br/></li>)}
-                </ul>
-              
-                <div className = "flex justify-end p-2">
+                <div className="min-h-screen p-10 bg-white ">
+                
+                <div className="flex flex-col bg-blue-100 justify-between rounded-2xl p-4 md:p-8 ">
+                    <ul>
+                        {exam.map((item)=><li className=" text-blue-800 font-medium text-xl py-5 px-10" key={item.id}> Name:  {item.name}<br/> Subject:  {item.subject}<br/> Description:  {item.description} <br/> Code: 
+                            <button onClick={(e)=>{e.preventDefault();fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
+                                {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
+                                    ).then(response =>response.json().then(resjson=>{console.log(resjson); 
+                                                    if(resjson.success===true){
+                                                        console.log(resjson.qa);
+                                                        <QandA qa="{resjson.qa}"/>
+                                                     
+                                                    }else{   
+                                                        
+                                                    }
+                                                }
+                                            )
+                                        )
+                            }}> 
+                              <Link to="/QandA">{item.code}</Link>  </button><br/>
+                            </li>)
+                        }
+                    </ul>
+                
+                    <div className = "flex justify-end p-2">
+                        
                     
-                   
-                  
+                    
+                    </div>
                 </div>
-              </div>
-         
-            </div> 
+            
+                </div> 
             </>
             }   
         </div>

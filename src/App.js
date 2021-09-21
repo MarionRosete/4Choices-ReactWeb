@@ -7,6 +7,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 import CreateExam from './component/auth/CreateExam'
 
 import FindYourAccount from './component/FindYourAccount';
+import QandA from './component/auth/QandA';
 
 function App(){
     const token=localStorage.getItem('token')
@@ -27,9 +28,11 @@ function App(){
                 <div className ="grid grid-flow-col min-h-screen bg-white">
                   <Dashboard />
                     <Route exact path="/CreateExam" component={CreateExam} /> 
+
+                    <Route exact path="/QandA" component={QandA} />
                 </div> 
                 </ProtectedRoutes>
-                
+
              </Switch>
       </Router>
      
