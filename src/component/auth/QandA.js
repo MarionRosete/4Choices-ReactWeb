@@ -1,13 +1,11 @@
 import React from 'react'
 
-function QandA(props){
- 
-   
-    console.log(props.qa);
+function QandA(qa){
+    console.log(qa)
     
     return (
        <>
-           <h1>Q and A is here</h1>
+           <h1>Display Questions and Answer here</h1>
        </>
     )
 }
