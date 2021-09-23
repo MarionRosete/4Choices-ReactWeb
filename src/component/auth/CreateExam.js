@@ -80,8 +80,8 @@ const CreateExam = () => {
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Subject" required value={subject}  onChange={(e)=>setSubject(e.target.value)}/>
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Description" required value={description}  onChange={(e)=>setDescription(e.target.value)}/>
                         <div className = "flex justify-end p-10">
-                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleSubmit}>Next </button>
                             <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end"> <Link to="/dashboard">Cancel </Link></button>
+                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleSubmit}>Next </button>
                         </div>
                     </div>
          

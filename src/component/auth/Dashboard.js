@@ -7,6 +7,8 @@ import {  useEffect, useState,  } from 'react'
 
 
 const Dashboard = () => {
+    const code=Date.now().toString(36); 
+    console.log(code)
         
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         const urlUser = 'http://127.0.0.1:8000/api/dashboard/user'
@@ -73,7 +75,7 @@ const Dashboard = () => {
                     
                         <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md "><Link to="/CreateExam">Create Quiz</Link></button>
                         <div className =" flex flex-col place-items-start gap-y-1">
-                            <button className= "text-blue-900 hover:text-blue-600 font-medium "><Link to ="/MyExam">Classes </Link></button>
+                            <button className= "text-blue-900 hover:text-blue-600 font-medium "><Link to ="/MyExam">My Exams </Link></button>
                             <button className= "text-blue-900 hover:text-blue-600 font-medium "><Link to ="/"> Dashboard </Link></button>
                             <button className= "text-blue-900 hover:text-blue-600 font-medium " onClick={handleLogout}> Logout </button>
                         </div>

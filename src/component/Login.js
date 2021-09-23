@@ -28,7 +28,6 @@ const Login = () => {
                         if(resjson.success===true){
                             window.location.replace( "/Dashboard");
                             localStorage.setItem('token', resjson.token)
-                            localStorage.setItem('status', resjson.message)
                         }else{
                                 console.log("unauthorized")
                         };
