@@ -54,8 +54,8 @@ const CreateExam = () => {
                 <div className="min-h-screen p-10 bg-white ">
                     
                     <div className="flex flex-col bg-blue-100 justify-between rounded-2xl p-4 md:p-16 h-full">
-                        <span className=" text-blue-800 font-medium text-xl py-5 px-10">Create Quiz</span>
-                     
+                        <span className=" text-blue-800 font-large text-xl py-5 px-10">{code.name}</span>
+                        <p>Question</p>
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Write your question here" required value={question}  onChange={(e)=>setQuestion(e.target.value)}/>
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Answer option 1" required value={answer1}  onChange={(e)=>setAnswer1(e.target.value)}/>
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Answer option 2" required value={answer2}  onChange={(e)=>setAnswer2(e.target.value)}/>
@@ -63,7 +63,7 @@ const CreateExam = () => {
                         <input className="h-5 p-6 border rounded-md" type="text" placeholder="Answer option 4" required value={answer4}  onChange={(e)=>setAnswer4(e.target.value)}/>
                         <div className = "flex justify-end p-10">
                             <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end" onClick={()=> window.location.replace("/Dashboard")}>Cancel </button>
-                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleQuestions} >Next </button>
+                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleQuestions} >Submit </button>
                         </div>
                
                     </div>

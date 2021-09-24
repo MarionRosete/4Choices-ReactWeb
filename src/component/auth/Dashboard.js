@@ -7,14 +7,15 @@ import {  useEffect, useState,  } from 'react'
 
 
 const Dashboard = () => {
-    const code=Date.now().toString(36); 
-    console.log(code)
-        
+    
         const urlLogout = 'http://localhost:8000/api/dashboard/logout'
         const urlUser = 'http://127.0.0.1:8000/api/dashboard/user'
         const[user,setUser]=useState('');
         useEffect(()=>{
-            
+            const code=Date.now().toString(36); 
+    console.log(code)
+    const tosend = [code];
+    console.log(tosend);
            
             const abortCtrl = new AbortController();
             

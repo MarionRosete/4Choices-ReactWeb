@@ -35,43 +35,38 @@ function Exams() {
 
 
     return (
-        <div>
+        <>
              {exam.length===0?
             <>
                 <h1>No Exam Created</h1>
             </>
             :
             <>
-                <div className="min-h-screen p-10 bg-white ">
-                
-                <div className="flex flex-col bg-blue-100 justify-between rounded-2xl p-4 md:p-8 ">
-                    <ul className=" text-blue-800 font-medium text-xl py-5 px-10">
-                        {exam.map((item)=><li  key={item.id}> Name:  {item.name}<br/> Subject:  {item.subject}<br/> Description:  {item.description} <br/> Code: 
-                            <button onClick={(e)=>{e.preventDefault();fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
+                {exam.map((item)=>
+                    <div className="shadow-lg m-8 rounded-2xl bg-white p-4"  key={item.id}> 
+                        Name:  {item.name}<br/> 
+                        Subject:  {item.subject}<br/> 
+                        Description:  {item.description} <br/> 
+                        Code: {item.code} <br/>
+                                <button className= "block bg-blue-900 hover:bg-blue-600 shadow-md text-white font-small py-1.5 px-4 rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
                                 {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
-                                    ).then(response =>response.json().then(resjson=>{
-                                        if(resjson.success===true){
-                                            history.push({pathname:"/QandA", state:resjson.qa})
-                                        }else{
-
-                                            history.push({pathname:"/"})
-                                        }
-                                       
-                                            }
+                                ).then(response =>response.json().then(resjson=>{
+                                                history.push({pathname:"/QandA", state:{status:resjson.success,name:resjson.exam,data:resjson.qa} })
+                                                }
+                                                )
                                             )
-                                        )
-                            }}>
-
-                          {item.code}  </button><br/>
-                            </li>)
-                        }
-                    </ul>
-                </div>
+                                }}>
+                                View Exam
+                                </button>
+                        <div className="block text-gray-400"/>
+                    </div>
+                  )
+                }
             
-                </div> 
+        
             </>
             }
-        </div>
+        </>
     )
 }
 
