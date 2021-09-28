@@ -58,6 +58,16 @@ function Exams() {
                                 }}>
                                 View Exam
                                 </button>
+                                <button className= "block bg-red-900 hover:bg-red-600 shadow-md text-white font-small py-1.5 px-4 rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.code}`,
+                                {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
+                                ).then(response =>response.json().then(resjson=>{
+                                              window.location.reload();
+                                                }
+                                                )
+                                            )
+                                }}>
+                                Delete Exam
+                                </button>
                         <div className="block text-gray-400"/>
                     </div>
                   )

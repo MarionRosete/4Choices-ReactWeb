@@ -3,9 +3,8 @@ import Login from './component/Login'
 import Register from './component/Register'
 import Dashboard from './component/auth/Dashboard'
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
-import ProtectedRoutes from './ProtectedRoutes';
 import CreateExam from './component/auth/CreateExam'
-
+import ProtectedRoutes from './ProtectedRoutes';
 import FindYourAccount from './component/FindYourAccount';
 import QandA from './component/auth/QandA';
 import Exams from './component/auth/Exams';
@@ -22,19 +21,22 @@ function App(){
                 <Route exact path="/Register" component={Register}/>
                 <Route exac path="/Forgetpassword" component={FindYourAccount}/>
                 <Route exact path="/" component={Login}>
-                {token !=null ?  <Redirect to="/Dashboard" /> : <Login />}
+                {token!=null?<Redirect to="/Dashboard"/>:<Login/>}
                 </Route>
-               
-                <ProtectedRoutes  >
+            
+                <ProtectedRoutes >
                 <div className ="grid grid-flow-col min-h-screen bg-white">
-                  <Dashboard />
-                    <Route exact path="/CreateExam" component={CreateExam} /> 
-                    <Route exact path="/MyExam" component={Exams}/>
-                    <Route exact path="/QandA" component={QandA} />
-                </div> 
+                <Dashboard/>
+              
+                      <Switch>
+                      <ProtectedRoutes exact path="/CreateExam" component={CreateExam} /> 
+                      <ProtectedRoutes exact path="/MyExam" component={Exams}/>
+                      <ProtectedRoutes exact path="/QandA" component={QandA} />
+                      </Switch>
+                </div>
                 </ProtectedRoutes>
-
-             </Switch>
+           
+            </Switch>  
       </Router>
      
    

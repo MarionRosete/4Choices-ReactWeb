@@ -1,6 +1,6 @@
 
 import React, { useState,  } from 'react'
-import { Link} from 'react-router-dom'
+import { Link,useHistory} from 'react-router-dom'
 import { GoogleLogin } from 'react-google-login';
 
 
@@ -10,7 +10,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password,  setPassword] = useState('');
     const[printRes, resJson]= useState('');
-
+    const history = useHistory();
 
 
     const handleLogin=(event)=>{
@@ -26,8 +26,8 @@ const Login = () => {
         ).then(response=>(
                     response.json().then(resjson=>{resJson(resjson.message);
                         if(resjson.success===true){
-                            window.location.replace( "/Dashboard");
                             localStorage.setItem('token', resjson.token)
+                            history.push({pathname:"/Dashboard",state:{token:resjson.token}})
                         }else{
                                 console.log("unauthorized")
                         };
