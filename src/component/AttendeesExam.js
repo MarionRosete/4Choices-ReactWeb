@@ -6,8 +6,18 @@ function QandA(props){
     const success = props.location.state.status
     const name = props.location.state.name
     const data =props.location.state.data
+    //Random Exam
+      for(let i=data.length-1;i>0;i--){
+            const j = Math.floor(Math.random()*(i+1));
+            const temp = data[i];
+            data[i]=data[j];
+            data[j]=temp; 
+        }
+    
         
-    console.log(data)
+     
+    
+   console.log(data)
     return (
     <>
     

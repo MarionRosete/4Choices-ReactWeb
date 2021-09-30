@@ -8,6 +8,8 @@ import ProtectedRoutes from './ProtectedRoutes';
 import FindYourAccount from './component/FindYourAccount';
 import QandA from './component/auth/QandA';
 import Exams from './component/auth/Exams';
+import Attendees from './component/Attendees';
+import AttendeesExam from './component/AttendeesExam';
 
 function App(){
     const token=localStorage.getItem('token')
@@ -17,7 +19,8 @@ function App(){
      
       <Router>
             <Switch>
-
+                <Route exact path="/AttendeesExam" component={AttendeesExam}/>
+                <Route exact path="/Attendees" component={Attendees}/>
                 <Route exact path="/Register" component={Register}/>
                 <Route exac path="/Forgetpassword" component={FindYourAccount}/>
                 <Route exact path="/" component={Login}>
@@ -29,9 +32,9 @@ function App(){
                 <Dashboard/>
               
                       <Switch>
-                      <ProtectedRoutes exact path="/CreateExam" component={CreateExam} /> 
-                      <ProtectedRoutes exact path="/MyExam" component={Exams}/>
-                      <ProtectedRoutes exact path="/QandA" component={QandA} />
+                      <Route exact path="/CreateExam" component={CreateExam} /> 
+                      <Route exact path="/MyExam" component={Exams}/>
+                      <Route exact path="/QandA" component={QandA} />
                       </Switch>
                 </div>
                 </ProtectedRoutes>
