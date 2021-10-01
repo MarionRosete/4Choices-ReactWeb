@@ -61,7 +61,7 @@ const CreateExam = () => {
                         <span className=" text-blue-800 font-large text-xl py-5 px-10">{code.name}</span>
                         <p>Question</p>
                         {msg}
-                        <input className="h-5 p-6 border rounded-md" type="text" placeholder="Write your question here" required value={question}  onChange={(e)=>setQuestion(e.target.value)}/>
+                        <textarea className="h-5 p-6 border rounded-md" type="text" required value={question} placeholder="Write your question here" onChange={(e)=>setQuestion(e.target.value)}/>
                         Choices
                         <span><input type="checkbox" value={1} onChange={(e)=>setAnswer(e.target.checked)}/><input className="h-5 p-6 border rounded-md" type="text" placeholder="Answer option 1" required value={answer1}  onChange={(e)=>setAnswer1(e.target.value)}/></span>
                         <span><input type="checkbox" value={2} onChange={(e)=>setAnswer(e.target.value)}/><input className="h-5 p-6 border rounded-md" type="text" placeholder="Answer option 2" required value={answer2}  onChange={(e)=>setAnswer2(e.target.value)}/></span>
@@ -77,21 +77,23 @@ const CreateExam = () => {
             </>  
             :
             <>
-                <div className="min-h-screen p-10 bg-white ">
+            
               
-                    <div className="flex flex-col bg-blue-100 justify-between rounded-2xl p-4 md:p-16 h-full">
-                        <span className=" text-blue-800 font-medium text-xl py-5 px-10">Create Quiz</span>
-                        {status.message}
-                        <input className="h-5 p-6 border rounded-md" type="text" placeholder="Quiz title" required value={name}  onChange={(e)=>setName(e.target.value)}/>
-                        <input className="h-5 p-6 border rounded-md" type="text" placeholder="Subject" required value={subject}  onChange={(e)=>setSubject(e.target.value)}/>
-                        <input className="h-5 p-6 border rounded-md" type="text" placeholder="Description" required value={description}  onChange={(e)=>setDescription(e.target.value)}/>
-                        <div className = "flex justify-end p-10">
-                            <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end"> <Link to="/dashboard">Cancel </Link></button>
-                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleSubmit}>Next </button>
+                    <div className=" bg-blue-100 rounded-2xl p-8">
+                        <span className=" text-blue-800 font-medium ">Create Quiz</span>
+                        <div className=" md:p-16 h-full gap-y-6 flex flex-col">
+                            {status.message}
+                            <input className="h-5 p-6 border rounded-md" type="text" placeholder="Quiz title" required value={name}  onChange={(e)=>setName(e.target.value)}/>
+                            <input className="h-5 p-6 border rounded-md" type="text" placeholder="Subject" required value={subject}  onChange={(e)=>setSubject(e.target.value)}/>
+                            <input className="h-5 p-6 border rounded-md" type="text" placeholder="Description" required value={description}  onChange={(e)=>setDescription(e.target.value)}/>
+                                <div className = "flex justify-end ">
+                                    <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end"> <Link to="/dashboard">Cancel </Link></button>
+                                    <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleSubmit}>Next </button>
+                                </div>
                         </div>
                     </div>
          
-                </div>
+            
             </>
             }
           

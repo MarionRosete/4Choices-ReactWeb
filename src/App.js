@@ -1,6 +1,7 @@
 import React from 'react'
 import Login from './component/Login'
 import Register from './component/Register'
+import Sidebar from './component/auth/Sidebar'
 import Dashboard from './component/auth/Dashboard'
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
 import CreateExam from './component/auth/CreateExam'
@@ -8,7 +9,7 @@ import ProtectedRoutes from './ProtectedRoutes';
 import FindYourAccount from './component/FindYourAccount';
 import QandA from './component/auth/QandA';
 import Exams from './component/auth/Exams';
-import Attendees from './component/Attendees';
+import AttendeesLogin from './component/AttendeesLogin';
 import AttendeesExam from './component/AttendeesExam';
 
 function App(){
@@ -20,7 +21,7 @@ function App(){
       <Router>
             <Switch>
                 <Route exact path="/AttendeesExam" component={AttendeesExam}/>
-                <Route exact path="/Attendees" component={Attendees}/>
+                <Route exact path="/Attendees" component={AttendeesLogin}/>
                 <Route exact path="/Register" component={Register}/>
                 <Route exac path="/Forgetpassword" component={FindYourAccount}/>
                 <Route exact path="/" component={Login}>
@@ -28,14 +29,16 @@ function App(){
                 </Route>
             
                 <ProtectedRoutes >
-                <div className ="grid grid-flow-col min-h-screen bg-white">
-                <Dashboard/>
-              
+                <div className ="min-h-screen flex">
+                <Sidebar/>
+                      <div className="flex-1 p-20">
                       <Switch>
+                      <Route exact path="/Dashboard" component={Dashboard}/>
                       <Route exact path="/CreateExam" component={CreateExam} /> 
                       <Route exact path="/MyExam" component={Exams}/>
                       <Route exact path="/QandA" component={QandA} />
                       </Switch>
+                      </div>
                 </div>
                 </ProtectedRoutes>
            

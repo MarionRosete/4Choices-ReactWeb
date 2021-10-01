@@ -8,7 +8,7 @@ function Attendees() {
         fetch(`http://localhost:8000/api/dashboard/attendeesExam/${code}`,
                                 {headers: {  'accept':'application/json'}}
                                 ).then(response =>response.json().then(resjson=>{
-                                                history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,data:resjson.qa} })
+                                                history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,data:resjson.qa} })
                                                 }
                                                 )
                                             )

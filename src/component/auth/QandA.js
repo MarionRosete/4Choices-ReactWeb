@@ -15,8 +15,12 @@ function QandA(props){
         <>
          Exam Name: {name}
           
-            {data.map((item)=><div key={item.id}> {item.id}. {item.question} 
-            <br/>{item.answer1}<br/>{item.answer2}<br/>{item.answer3}<br/>{item.answer4}</div>)}
+            {data.map((item)=><div key={item.id}> {item.id}. {item.question}  <br/>
+            {item.answer1}<br/>
+            {item.answer2}<br/>
+            {item.answer3}<br/>
+            {item.answer4}<br/>
+            Correct answer:{item.answer} </div>)}
 
         </>
         :
