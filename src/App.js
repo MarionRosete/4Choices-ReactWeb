@@ -21,7 +21,7 @@ function App(){
       <Router>
             <Switch>
                 <Route exact path="/AttendeesExam" component={AttendeesExam}/>
-                <Route exact path="/Attendees" component={AttendeesLogin}/>
+                <Route exact path="/Attendeeslogin" component={AttendeesLogin}/>
                 <Route exact path="/Register" component={Register}/>
                 <Route exac path="/Forgetpassword" component={FindYourAccount}/>
                 <Route exact path="/" component={Login}>
@@ -29,7 +29,7 @@ function App(){
                 </Route>
             
                 <ProtectedRoutes >
-                <div className ="min-h-screen flex">
+                <div className ="min-h-screen md:flex">
                 <Sidebar/>
                       <div className="flex-1 p-20">
                       <Switch>
