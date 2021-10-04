@@ -41,39 +41,49 @@ function Exams() {
                 <h1>No Exam Created</h1>
             </>
             :
-            <>
-                {exam.map((item)=>
-                    <div className="shadow-lg m-8 rounded-2xl bg-white p-4"  key={item.id}> 
-                        Name:  {item.name}<br/> 
-                        Subject:  {item.subject}<br/> 
-                        Description:  {item.description} <br/> 
-                        Code: {item.code} <br/>
-                                <button className= "block bg-blue-900 hover:bg-blue-600 shadow-md text-white font-small py-1.5 px-4 rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
+            <> 
+                <table className="table-fixed text-center">
+                    <thead>
+                    <tr>
+                        <th className="w-1/4 ...">Subject</th>
+                        <th className="w-1/4 ...">Name</th>
+                        <th className="w-1/4 ...">Description</th>
+                        <th className="w-1/4 ...">Code</th>
+                        <th className="w-1/4 ...">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {exam.map((item)=>
+                    <tr key={item.id}>    
+                        <td>{item.subject}</td>
+                        <td>{item.name}</td>
+                        <td>{item.description}</td>
+                        <td>{item.code}</td>
+                        <td className="flex">
+                            <button className= "block bg-blue-900 hover:bg-blue-600 shadow-md text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
                                 {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
                                 ).then(response =>response.json().then(resjson=>{
-                                                history.push({pathname:"/QandA", state:{status:resjson.success,name:resjson.exam,data:resjson.qa} })
+                                                history.push({pathname:"/QandA", state:{code:item.code,name:resjson.exam,data:resjson.qa} })
                                                 }
                                                 )
                                             )
                                 }}>
-                                View Exam
+                                View
                                 </button>
-                                <button className= "block bg-red-900 hover:bg-red-600 shadow-md text-white font-small py-1.5 px-4 rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.code}`,
+                                <button className= "block bg-red-900 hover:bg-red-600 shadow-md  text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.code}`,
                                 {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
-                                ).then(response =>response.json().then(resjson=>{
+                                ).then(response =>response.json().then(()=>{
                                               window.location.reload();
                                                 }
                                                 )
                                             )
                                 }}>
-                                Delete Exam
-                                </button>
-                        <div className="block text-gray-400"/>
-                    </div>
-                  )
-                }
-            
-        
+                                Delete
+                            </button>
+                        </td>
+                    </tr>)}
+                    </tbody>                
+                </table>
             </>
             }
         </>

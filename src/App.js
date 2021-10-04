@@ -11,6 +11,7 @@ import QandA from './component/auth/QandA';
 import Exams from './component/auth/Exams';
 import AttendeesLogin from './component/AttendeesLogin';
 import AttendeesExam from './component/AttendeesExam';
+import CreateQandA from './component/auth/CreateQandA'
 
 function App(){
     const token=localStorage.getItem('token')
@@ -31,10 +32,11 @@ function App(){
                 <ProtectedRoutes >
                 <div className ="min-h-screen md:flex">
                 <Sidebar/>
-                      <div className="flex-1 p-20">
+                      <div className="flex-1 p-10">
                       <Switch>
                       <Route exact path="/Dashboard" component={Dashboard}/>
-                      <Route exact path="/CreateExam" component={CreateExam} /> 
+                      <Route exact path="/CreateExam" component={CreateExam} />
+                      <Route exact path="/CreateQandA" component={CreateQandA}/> 
                       <Route exact path="/MyExam" component={Exams}/>
                       <Route exact path="/QandA" component={QandA} />
                       </Switch>
