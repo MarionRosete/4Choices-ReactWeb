@@ -3,7 +3,6 @@ import {useState} from 'react'
 function AttendeesExam(props){
    
 
-    const success = props.location.state.status
     const name = props.location.state.name
     const instructor = props.location.state.instructor
     const data =props.location.state.data
@@ -26,6 +25,7 @@ function AttendeesExam(props){
 	};
 
     //Random Exam
+
       for(let i=data.length-1;i>0;i--){
             const j = Math.floor(Math.random()*(i+1));
             const temp = data[i];
@@ -39,9 +39,14 @@ function AttendeesExam(props){
     <>
  
 
-    {success === true?
+    {data.length === 0?
         <>
-        {showScore ? (
+       <h1>No Question And Answers Exists</h1>
+        </>
+        :
+        <>
+            
+            {showScore ? (
 				<div className='score-section'>
 					You scored {score} out of {data.length}
 				</div>
@@ -55,10 +60,6 @@ function AttendeesExam(props){
             <button value={3} onClick={(e) => handleAnswerOptionClick(data[currentQuestion].answer.toString(), e.target.value)} >{data[currentQuestion].answer3}</button><br/>
             <button value={4} onClick={(e) => handleAnswerOptionClick(data[currentQuestion].answer.toString(), e.target.value)} >{data[currentQuestion].answer4}</button>
            </> )}
-        </>
-        :
-        <>
-            <h1>No Exam Created</h1>
         </>
     }
     </>
