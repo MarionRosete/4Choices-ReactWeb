@@ -4,36 +4,42 @@ import { useHistory } from 'react-router';
 function Attendees() {
     const history = useHistory();
     const[code, setCode]=useState('');
+    const[error, setError]=useState('')
     const findEmail=()=>{
         fetch(`http://localhost:8000/api/dashboard/attendeesExam/${code}`,
-                                {headers: {  'accept':'application/json'}}
-                                ).then(response =>response.json().then(resjson=>{
-                                                history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,data:resjson.qa} })
-                                                }
-                                                )
-                                            )
+                {headers: {  'accept':'application/json'}}
+                ).then(response =>response.json().then(resjson=>{
+                  if(resjson.success===true){
+                        history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,data:resjson.qa} });
+                  }else{
+                    setError("Code Does not Exits")
+                  }
+                }
+                        )
+                    )
+               
     }
     return (
-      <div className="flex bg-blue-200 items-center justify-center w-screen h-screen">
+      <div className="flex bg-blue-200 p-2 items-center justify-center w-screen h-screen">
       <div className="space-y-5 md:grid md:grid-cols-2 md:justify-center shadow-lg rounded-2xl bg-white p-4">
 
                    <div className="place-items-center md:p-5 text-center mt-1">
                    <p className="text-2xl px-5 py-10">Logo Here</p>
-                   <span className="text-xs px-10 block text-gray-400 mb-2">
-                       <svg className="inline w-20 mr-4 ml-4" height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
+                   <span className="text-xs md:px-10 block text-gray-400 mb-2">
+                   
+                       <svg className="inline w-20 md:mr-4 md:ml-4" height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
                          ENTER CODE TO JOIN
-                       <svg className="inline w-20 mr-5 ml-4"  height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
+                       <svg className="inline w-20 md:mr-5 md:ml-4"  height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
                    </span>
-
+                   <p className="text-red-500">{error}</p>
                    <div>
-                       <span className="flex items-center gap-0">
+                       <span className="flex items-center">
                          <button type="submit" className="absolute p-1.5 focus:outline-none focus:shadow-outline">
-                           <svg className="ml-12 mb-5 mt-0.2 border-r-2 px-2" width="40.5" height="42.5" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <svg className="md:ml-12 mb-5 mt-0.2 border-r-2 px-2" width="40.5" height="42.5" viewBox="0 0 25 27" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path fillRule="evenodd" clipRule="evenodd" d="M12.5 0C11.3356 0 9.38995 0.447188 7.55901 0.945C5.68588 1.45125 3.79757 2.05031 2.6872 2.41312C2.22295 2.56644 1.81137 2.8476 1.49973 3.22431C1.18809 3.60102 0.989044 4.058 0.925447 4.54275C-0.0803034 12.0977 2.25351 17.6968 5.08513 21.4009C6.28593 22.9854 7.71768 24.3807 9.33257 25.5403C9.98395 26.001 10.5881 26.3537 11.1011 26.595C11.5736 26.8178 12.0815 27 12.5 27C12.9185 27 13.4248 26.8178 13.8989 26.595C14.5174 26.2944 15.109 25.9416 15.6674 25.5403C17.2824 24.3808 18.7141 22.9854 19.9149 21.4009C22.7465 17.6968 25.0803 12.0977 24.0746 4.54275C24.0111 4.05776 23.8121 3.60052 23.5005 3.22352C23.1888 2.84652 22.7772 2.56505 22.3128 2.41144C20.7009 1.88293 19.0765 1.39342 17.441 0.943313C15.6101 0.448875 13.6644 0 12.5 0ZM12.5 8.4375C13.0978 8.43661 13.6766 8.64731 14.1339 9.03228C14.5912 9.41725 14.8975 9.95165 14.9986 10.5408C15.0997 11.13 14.9889 11.7359 14.6861 12.2513C14.3832 12.7667 13.9077 13.1582 13.3438 13.3566L13.9934 16.7147C14.0171 16.8368 14.0134 16.9627 13.9827 17.0832C13.952 17.2038 13.895 17.3161 13.8158 17.412C13.7367 17.508 13.6372 17.5852 13.5247 17.6383C13.4122 17.6913 13.2893 17.7188 13.1649 17.7188H11.8351C11.7109 17.7185 11.5882 17.6909 11.4759 17.6377C11.3635 17.5846 11.2643 17.5073 11.1853 17.4114C11.1063 17.3155 11.0495 17.2033 11.0189 17.0828C10.9883 16.9624 10.9846 16.8367 11.0083 16.7147L11.6563 13.3566C11.0924 13.1582 10.6168 12.7667 10.314 12.2513C10.0111 11.7359 9.90036 11.13 10.0014 10.5408C10.1025 9.95165 10.4088 9.41725 10.8661 9.03228C11.3234 8.64731 11.9022 8.43661 12.5 8.4375Z" fill="#1D1D69"/>
                            </svg>
                         </button>
-
-                      <input className="mb-5 ml-12 box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm pl-14 py-2 w-80 h-11.5" type="text" placeholder="Enter Code" value={code} onChange={(e) => setCode(e.target.value)} />
+                      <input className="mb-5 md:ml-12 box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm pl-14 py-2 w-80 h-11.5" type="text" placeholder="Enter Code" value={code} onChange={(e) => setCode(e.target.value)} />
                       <br/>
                       </span>
                    </div>

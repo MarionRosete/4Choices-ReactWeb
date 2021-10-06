@@ -37,7 +37,7 @@ const CreateExam = () => {
        
             <>
             
-              
+                <div className="md:px-40">
                     <div className=" bg-blue-100 rounded-2xl p-8">
                     <div className="flex items-center text-blue-800 font-medium">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9" viewBox="0 0 20 20" fill="currentColor">
@@ -57,7 +57,7 @@ const CreateExam = () => {
                                 </div>
                         </div>
                     </div>
-         
+                </div>
             
             </>
             
