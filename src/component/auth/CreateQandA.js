@@ -10,7 +10,7 @@ function CreateQandA(props) {
     const [answer, setAnswer] = useState([]);
     const [msg, setMsg] = useState([]);
     const handleQuestions = (e)=>{
-       
+
         const qa = {question, answer1, answer2, answer3, answer4,answer};
         fetch(`http://localhost:8000/api/dashboard/createqa/${exam.code}`,{
             headers:{"Content-Type":'application/json', "accept":'application/json',  Authorization: `Bearer ${localStorage.getItem('token')}`},
@@ -24,9 +24,9 @@ function CreateQandA(props) {
         setAnswer4("");
         setAnswer("")
         for (const checkbox of document.querySelectorAll('.myCheckBox')) {
-            
-            checkbox.checked = true 
-            checkbox.checked = false 
+
+            checkbox.checked = true
+            checkbox.checked = false
             }
     }
     return (
