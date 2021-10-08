@@ -12,7 +12,8 @@ import Exams from './component/auth/Exams';
 import AttendeesLogin from './component/AttendeesLogin';
 import AttendeesExam from './component/AttendeesExam';
 import CreateQandA from './component/auth/CreateQandA'
-
+import Classes from './component/auth/Classes'
+import CreateClass from './component/auth/CreateClass'
 function App(){
     const token=localStorage.getItem('token')
   
@@ -36,7 +37,9 @@ function App(){
                       <Switch>
                       <Route exact path="/Dashboard" component={Dashboard}/>
                       <Route exact path="/CreateExam" component={CreateExam} />
-                      <Route exact path="/CreateQandA" component={CreateQandA}/> 
+                      <Route exact path="/CreateQandA" component={CreateQandA}/>
+                      <Route exact path="/MyClasses" component={Classes}/>
+                      <Route exact path="/CreateClass" component={CreateClass}/>
                       <Route exact path="/MyExam" component={Exams}/>
                       <Route exact path="/QandA" component={QandA} />
                       </Switch>
