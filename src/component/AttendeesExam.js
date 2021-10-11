@@ -1,9 +1,10 @@
 import {useState} from 'react'
 
 function AttendeesExam(props){
-
-    const data =props.location.state.data
+   
     
+    const data =props.location.state.data
+    console.log(data)
     const [currentQuestion, setCurrentQuestion] = useState(0);
 	const [showScore, setShowScore] = useState(false);
 	const [score, setScore] = useState(0);
@@ -23,17 +24,7 @@ function AttendeesExam(props){
 		}
 	};
    
-    //Random Exam
-
-      for(let i=data.length-1;i>0;i--){
-            const j = Math.floor(Math.random()*(i+1));
-            const temp = data[i];
-            data[i]=data[j];
-            data[j]=temp; 
-        }
-
-        
-      
+  
     return (
     <>
  

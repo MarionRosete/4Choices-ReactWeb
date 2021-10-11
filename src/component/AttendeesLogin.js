@@ -5,12 +5,26 @@ function Attendees() {
     const history = useHistory();
     const[code, setCode]=useState('');
     const[error, setError]=useState('')
-    const findEmail=()=>{
+    const handleLogin=()=>{
         fetch(`http://localhost:8000/api/dashboard/attendeesExam/${code}`,
                 {headers: {  'accept':'application/json'}}
                 ).then(response =>response.json().then(resjson=>{
                   if(resjson.success===true){
-                        history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,data:resjson.qa} });
+                    function shuffle(array) {
+                      let currentIndex = array.length,  randomIndex;
+                      // While there remain elements to shuffle...
+                      while (currentIndex !== 0) {
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex--;
+                        // And swap it with the current element.
+                        [array[currentIndex], array[randomIndex]] = [
+                          array[randomIndex], array[currentIndex]];
+                      }
+                      return array;
+                    }
+                      history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,
+                      data:shuffle(resjson.qa)} });
                   }else{
                     setError("Code Does not Exits")
                   }
@@ -44,7 +58,7 @@ function Attendees() {
                       </span>
                    </div>
 
-                    <button className="mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 px-20 w-80"onClick={findEmail}>Join Now</button>
+                    <button className="mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 px-20 w-80"onClick={handleLogin}>Join Now</button>
                    </div>
 
                    <div className="place-items-center md:flex">
