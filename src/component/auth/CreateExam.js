@@ -79,7 +79,7 @@ const CreateExam = () => {
                                 {classes.map((item)=>
                                 <div key={item.id}>
                                 
-                                    <button className="focus:outline-none focus:ring-2 focus:bg-gray-500 rounded-md bg-gray-400 text-blue-900 text-sm font-bold font-sans" value={item.id} onClick={(e)=>setID(e.target.value)}>{item.subject}<br/>{item.section}</button>
+                                    <button className="focus:outline-none focus:ring-2 focus:bg-gray-500 rounded-md bg-gray-400 text-blue-900 text-xs font-bold font-sans" value={item.id} onClick={(e)=>setID(e.target.value)}>{item.subject}<br/>{item.section}</button>
                                    
                                 </div>)}
                                 </div>

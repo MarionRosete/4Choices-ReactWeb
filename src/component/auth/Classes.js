@@ -68,7 +68,7 @@ function Classes() {
                             </svg>
                                 
                         </button>
-                        <button className= "block bg-red-900 hover:bg-red-600 shadow-md  text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.id}`,
+                        <button className= "block bg-red-900 hover:bg-red-600 shadow-md  text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/deleteclass/${item.id}`,
                                 {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
                                 ).then(response =>response.json().then(()=>{
                                               window.location.reload();
