@@ -42,7 +42,7 @@ function QandA(props){
                     
 				</div>
 			) : (<>
-          <div className="md:px-40 md:p-20 p-8">
+          <div className="md:px-40 p-8">
             <div className="text-blue-900  bg-blue-200 "><p className='text-lg font-bold space-y-x'>Items:{currentQuestion+1}/{data.length}</p>
             <div className="justify-center items-center md:p-24">  {data[currentQuestion].question}</div> 
             <div className="text-blue-900  bg-blue-200 "><p className='text-lg font-bold space-y-x'>Correct answer:{data[currentQuestion].answer}</p></div>
