@@ -6,7 +6,7 @@ function QandA(props){
 
     const code = props.location.state.code
     const name = props.location.state.name
-    const data =props.location.state.data
+    const data = props.location.state.data
     
         
     console.log(data)

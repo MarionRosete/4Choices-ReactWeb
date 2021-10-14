@@ -1,19 +1,19 @@
 import React from 'react'
-import Login from './component/Login'
-import Register from './component/Register'
-import Sidebar from './component/auth/Sidebar'
-import Dashboard from './component/auth/Dashboard'
+import Login from './component/teacher/Authteacher/Login'
+import Register from './component/teacher/Authteacher/Register'
+import Sidebar from './component/teacher/Sidebar'
+import Dashboard from './component/teacher/Dashboard'
 import { BrowserRouter as Router, Route, Switch,Redirect } from 'react-router-dom';
-import CreateExam from './component/auth/CreateExam'
+import CreateExam from './component/teacher/CreateExam'
 import ProtectedRoutes from './ProtectedRoutes';
-import FindYourAccount from './component/FindYourAccount';
-import QandA from './component/auth/QandA';
-import Exams from './component/auth/Exams';
-import AttendeesLogin from './component/AttendeesLogin';
-import AttendeesExam from './component/AttendeesExam';
-import CreateQandA from './component/auth/CreateQandA'
-import Classes from './component/auth/Classes'
-import CreateClass from './component/auth/CreateClass'
+import FindYourAccount from './component/teacher/Authteacher/FindYourAccount';
+import QandA from './component/teacher/QandA';
+import Exams from './component/teacher/Exams';
+import AttendeesLogin from './component/attendees/AttendeesLogin';
+import AttendeesExam from './component/attendees/AttendeesExam';
+import CreateQandA from './component/teacher/CreateQandA'
+import Classes from './component/teacher/Classes'
+import CreateClass from './component/teacher/CreateClass'
 function App(){
     const token=localStorage.getItem('token')
   
@@ -41,7 +41,7 @@ function App(){
                       <Route exact path="/MyClasses" component={Classes}/>
                       <Route exact path="/CreateClass" component={CreateClass}/>
                       <Route exact path="/MyExam" component={Exams}/>
-                      <Route exact path="/QandA" component={QandA} />
+                      <Route exact path="/QandA" component={QandA}/>
                       </Switch>
                       </div>
                 </div>

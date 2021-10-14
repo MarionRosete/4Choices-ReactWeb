@@ -1,5 +1,5 @@
 import React from 'react'
-import {  useHistory} from 'react-router-dom'
+import {  useHistory,} from 'react-router-dom'
 
 function Exams(props) {
    
@@ -39,7 +39,7 @@ function Exams(props) {
                     <td>{item.name}</td>
                     <td>{item.code}</td>
                     <td className="flex justify-center space-x-1">
-                        <button className= "block bg-blue-900 hover:bg-blue-600 shadow-md text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
+                        <button className= "block bg-blue-900 hover:bg-blue-600 shadow-md text-white p-0.5 text-sm rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/myqa/${item.code}`,
                             {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
                             ).then(response =>response.json().then(resjson=>{
                                             history.push({pathname:"/QandA", state:{code:item.code,name:resjson.exam,data:resjson.qa} })
@@ -49,7 +49,7 @@ function Exams(props) {
                             }}>
                             View
                             </button>
-                            <button className= "block bg-red-900 hover:bg-red-600 shadow-md  text-white p-0.5  rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.code}`,
+                            <button className= "block bg-red-900 hover:bg-red-600 shadow-md  text-white p-0.5 text-sm rounded-md" onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${item.code}`,
                             {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
                             ).then(response =>response.json().then(()=>{
                                             window.location.replace('/myclasses');
