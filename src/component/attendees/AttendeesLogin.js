@@ -15,7 +15,7 @@ function Attendees() {
                         const j = Math.floor(Math.random()*(i+1));
                         const temp = array[i];
                         array[i]=array[j];
-                        array[j]=temp; 
+                        array[j]=temp;
                       }
                       return array;
                     }
@@ -27,7 +27,7 @@ function Attendees() {
                 }
                         )
                     )
-               
+
     }
     return (
       <div className="flex bg-blue-200 p-2 items-center justify-center w-screen h-screen">
@@ -36,10 +36,10 @@ function Attendees() {
                    <div className="place-items-center md:p-5 text-center mt-1">
                    <p className="text-2xl px-5 py-10">Logo Here</p>
                    <span className="text-xs md:px-10 block text-gray-400 mb-2">
-                   
-                       <svg className="inline w-20 md:mr-4 md:ml-4" height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
+
+                       <svg className="inline w-20 md:mr-2 md:ml-4" height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
                          ENTER CODE TO JOIN
-                       <svg className="inline w-20 md:mr-5 md:ml-4"  height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
+                       <svg className="inline w-20 md:mr-5 md:ml-2"  height="5" fill="none" xmlns="http://www.w3.org/2000/svg"><path stroke="#C4C4C4" strokeWidth="2" d="M0 1h90"/></svg>
                    </span>
                    <p className="text-red-500">{error}</p>
                    <div>
