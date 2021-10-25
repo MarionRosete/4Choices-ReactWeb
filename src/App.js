@@ -14,6 +14,7 @@ import AttendeesExam from './component/attendees/AttendeesExam';
 import CreateQandA from './component/teacher/CreateQandA'
 import Classes from './component/teacher/Classes'
 import CreateClass from './component/teacher/CreateClass'
+import TeacherLobby from './component/teacher/TeacherLobby'
 function App(){
     const token=localStorage.getItem('token')
   
@@ -42,6 +43,7 @@ function App(){
                       <Route exact path="/CreateClass" component={CreateClass}/>
                       <Route exact path="/MyExam" component={Exams}/>
                       <Route exact path="/QandA" component={QandA}/>
+                      <Route exact path="/TeacherLobby" component={TeacherLobby}/>
                       </Switch>
                       </div>
                 </div>
