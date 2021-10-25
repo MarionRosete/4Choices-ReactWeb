@@ -1,7 +1,7 @@
 
 import {  Link  } from 'react-router-dom'
 import {  useEffect, useState,  } from 'react'
-
+import pic from '../../img/log.jpg'
 
 
 
@@ -71,6 +71,7 @@ const Dashboard = (props) => {
     return (       
     <>
     <div className="bg-blue-200 text-gray-100 flex justify-between md:hidden ">
+        
         <div className=" text-blue-800 font-bold py-10 px-6">{user.user}</div>
     
 
@@ -82,8 +83,9 @@ const Dashboard = (props) => {
     </div>
         <div className="sidebar fixed... bg-blue-200 text-blue-900 w-64  absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
             <div className = "flex flex-col justify-center gap-y-6 px-8 ">
-                <div className=" text-blue-800 font-bold py-10 px-6">{user.user}</div>
-            
+                
+                <div className="flex text-blue-800 py-10 items-center gap-x-2"><img className='w-14 h-14 rounded-full' src={pic} alt=""/><div><p className='font-bold'>{user.user}</p><p className='text-sm'> teacher</p></div></div>
+                
                 <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md "><Link to="/CreateExam">Create Quiz</Link></button>
                 <ul className =" flex flex-col place-items-start gap-y-1">
                     

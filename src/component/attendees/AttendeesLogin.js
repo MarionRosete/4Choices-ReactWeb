@@ -19,7 +19,7 @@ function Attendees() {
                       }
                       return array;
                     }
-                      history.push({pathname:"/AttendeesExam", state:{status:resjson.success,name:resjson.exam,instructor:resjson.instructor,
+                      history.push({pathname:"/AttendeesLobby", state:{status:resjson.success,subject:resjson.exam,code:resjson.code,
                       data:shuffle(resjson.qa)} });
                   }else{
                     setError("Code Does not Exits")

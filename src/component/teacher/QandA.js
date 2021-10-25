@@ -46,7 +46,7 @@ function QandA(props){
                     {subject} {name}
                     </div>
                     <div className='flex justify-center space-x-3'>
-                        <button className='bg-blue-900 rounded-md px-1 text-white hover:bg-blue-600'><Link to="/TeacherLobby">Start exam</Link></button>
+                        <button className='bg-blue-900 rounded-md px-1 text-white hover:bg-blue-600'><Link to={{pathname:"/TeacherLobby", state:{subject:subject, code:code}}}>Start exam</Link></button>
                         <button className='bg-red-900 rounded-md px-1 text-white hover:bg-red-600' onClick={()=>{fetch(`http://localhost:8000/api/dashboard/delete/${code}`,
                         {headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'}}
                         ).then(response =>response.json().then(()=>{

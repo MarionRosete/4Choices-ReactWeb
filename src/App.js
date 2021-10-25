@@ -15,6 +15,7 @@ import CreateQandA from './component/teacher/CreateQandA'
 import Classes from './component/teacher/Classes'
 import CreateClass from './component/teacher/CreateClass'
 import TeacherLobby from './component/teacher/TeacherLobby'
+import AttendeesLobby from './component/attendees/AttendeesLobby'
 function App(){
     const token=localStorage.getItem('token')
   
@@ -23,6 +24,7 @@ function App(){
      
       <Router>
             <Switch>
+                <Route exact path="/AttendeesLobby" component={AttendeesLobby}/>
                 <Route exact path="/AttendeesExam" component={AttendeesExam}/>
                 <Route exact path="/Attendeeslogin" component={AttendeesLogin}/>
                 <Route exact path="/Register" component={Register}/>
