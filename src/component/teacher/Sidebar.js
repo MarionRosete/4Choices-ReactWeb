@@ -70,7 +70,7 @@ const Dashboard = (props) => {
 
     return (
     <>
-    <div className ="flex flex-col bg-blue-900 h-3 p-8"></div>
+    <div className ="flex flex-col bg-blue-900 h-3 p-8">
     <div className="bg-blue-200 text-gray-100 flex justify-between md:hidden ">
 
         <div className=" text-blue-800 font-bold py-10 px-6">{user.user}</div>
@@ -145,7 +145,7 @@ const Dashboard = (props) => {
 
             </div>
         </div>
-
+        </div>
     </>
 
    )
