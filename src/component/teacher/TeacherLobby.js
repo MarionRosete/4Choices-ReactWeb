@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function TeacherLobby(props) {
     return (
@@ -12,11 +12,8 @@ function TeacherLobby(props) {
                     <button className='bg-blue-300 rounded-md w-auto p-1'>Start Quiz</button>
                 </div>
             </div>
+
             <div className='space-y-10'>
-                <div className='flex justify-center'>
-                    <input className='rounded-md text-center md:w-1/3 py-1' placeholder='Enter your name'/>
-                </div>
-           
                 <div className='grid md:grid-cols-2 md:grid-rows-5 gap-y-1 md:px-32 justify-items-center '>
                     <input className='rounded-md text-center md:w-72 py-1' placeholder=''/>
                     <input className='rounded-md text-center md:w-72 py-1' placeholder=''/>
