@@ -27,7 +27,7 @@ function QandA(props){
     {data.length === 0?
         <>
               <h1 className="font-bold text-2xl">Exam is Empty</h1>
-              <button className="block bg-blue-900 hover:bg-blue-600 shadow-md text-white font-small py-1.5 px-4 rounded-md"onClick={()=>history.push({pathname:"/CreateQandA", state:{name:name, code:code}})}>Update</button>
+              <button className="block bg-blue-900 hover:bg-blue-600 shadow-md text-white font-small py-1.5 px-4 rounded-md"onClick={()=>history.push({pathname:"/CreateQandA", state:{name:name, code:code, subject:subject}})}>Update</button>
               
         </>
         :

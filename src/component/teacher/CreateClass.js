@@ -29,7 +29,7 @@ const CreateClass = () => {
             )
         )
             
-        }
+    }
   
         return (
        
