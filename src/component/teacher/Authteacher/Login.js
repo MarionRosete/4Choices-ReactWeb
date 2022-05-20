@@ -17,22 +17,27 @@ const Login = () => {
         event.preventDefault()
         const user={email, password}
         console.log(user)
-        fetch('http://localhost:8000/api/login',
+        const url = 'http://localhost:8000/api/login'
+        fetch(url,
             {
             method:'post',
             headers:{'content-type':'application/json', 'accept':'application/json'},
             body:JSON.stringify(user)
             }
         ).then(response=>(
-                    response.json().then(resjson=>{resJson(resjson.message);
-                        if(resjson.success===true){
-                            localStorage.setItem('token', resjson.token)
-                            history.push({pathname:"/Dashboard",state:{token:resjson.token}})
-                        }else{
-                                console.log("unauthorized")
-                        };
-                        }
-                    )
+                    response.json()
+                        .then(resjson=>{resJson(resjson.message);
+                            if(resjson.success===true){
+                                localStorage.setItem('token', resjson.token)
+                                history.push({
+                                    pathname:"/Dashboard",
+                                    state:{token:resjson.token
+                                }})
+                            }else{
+                                    console.log("unauthorized")
+                            };
+                            }
+                        )
                 )
             )
     }
@@ -78,9 +83,16 @@ const Login = () => {
                 <div className="space-y-5 md:grid md:grid-cols-2 md:justify-center shadow-lg m-8 rounded-2xl bg-white p-4">
 
                     <div className="teacher place-items-center md:p-5 text-center">
-                        <h1 className="text-xl text-blue-900 font-medium p-2">Logo here</h1>
-                        <p className="text-2xl text-blue-900 font-medium p-2">Welcome Back</p>
-                        <GoogleLogin  clientId={clientId}  onSuccess={onSuccess} />
+                        <h1 className="text-xl text-blue-900 font-medium p-2">
+                            Logo here
+                        </h1>
+                        <p className="text-2xl text-blue-900 font-medium p-2">
+                            Welcome Back
+                        </p>
+                        <GoogleLogin  
+                            clientId={clientId}  
+                            onSuccess={onSuccess} 
+                        />
                       
                             <form onSubmit={handleLogin}>
                             <span className="block text-gray-400">
@@ -92,18 +104,45 @@ const Login = () => {
 
                             <div className="mt-5">
                                 <p className="text-red-500">{printRes}</p>
-                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="email" placeholder="Email"  value={email} required onChange={(e)=>setEmail(e.target.value)}/><br></br>
-                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" type="password" placeholder="Password"  value={password} required onChange={(e)=>setPassword(e.target.value)} /><br></br>
-                                <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 w-80 ">Sign In</button>
+                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80" 
+                                    type="email" 
+                                    placeholder="Email"  
+                                    value={email} 
+                                    required 
+                                    onChange={(e)=>setEmail(e.target.value)}
+                                /><br></br>
+                                <input className="box-border border focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-sm p-2 my-2 w-80"
+                                    type="password"
+                                    placeholder="Password"
+                                    value={password}
+                                    required
+                                    onChange={(e)=>setPassword(e.target.value)} 
+                                /><br></br>
+                                <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 w-80 ">
+                                    Sign In
+                                </button>
                             </div>
                             <div className="flex justify-between py-3 text-blue-500 text-xs w-80 m-auto">
-                                <div className="inline text-blue-900"><span className="inline align-middle"><input type="checkbox" name="" id=""/></span> Keep me loggedin</div>
-                                <div className="inline text-blue-900"><Link to="/Forgetpassword">FORGOT PASSWORD</Link></div>
+                                <div className="inline text-blue-900">
+                                    <span className="inline align-middle">
+                                        <input type="checkbox" name="" id=""/>
+                                    </span> 
+                                    Keep me loggedin
+                                </div>
+                                <div className="inline text-blue-900">
+                                    <Link to="/Forgetpassword">
+                                        FORGOT PASSWORD
+                                    </Link>
+                                </div>
                             </div>
 
                             <div className="inline-flex justify-between">
-                                <span className="text-blue-900 text-xs">Don't have an account yet?</span>
-                                <span className="text-xs text-blue-900"><Link to="/Register">&nbsp;SIGN UP!</Link></span>
+                                <span className="text-blue-900 text-xs">
+                                    Don't have an account yet?
+                                </span>
+                                <span className="text-xs text-blue-900">
+                                    <Link to="/Register">&nbsp;SIGN UP!</Link>
+                                </span>
                             </div>
 
                         </form>
