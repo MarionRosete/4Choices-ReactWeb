@@ -16,7 +16,6 @@ const CreateClass = () => {
     const handleSubmit = () => {
            
             const data = {section, subject, schedule};
-            console.log(data);
             const url = "http://localhost:8000/api/dashboard/createClass"
             fetch (url,
                 {
