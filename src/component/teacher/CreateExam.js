@@ -2,10 +2,6 @@
 import React, { useState, useEffect} from 'react';
 import{Link, useHistory} from 'react-router-dom'
 
-
-
-
-
 const CreateExam = () => {
     const [name, setName] = useState('');
     const [msg, setMsg] = useState('');
@@ -14,41 +10,48 @@ const CreateExam = () => {
     const[id, setID]=useState('');
     console.log(id)
     useEffect(()=>{
-         
-    
-           
-        const abortCtrl = new AbortController();
-        
-       
-        fetch(
-            'http://localhost:8000/api/dashboard/myClass',{
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}`, 'accept':'application/json'},
-       
+
+        const url ='http://localhost:8000/api/dashboard/myClass'
+        fetch(url,
+            {
+                headers: { 
+                    Authorization: `Bearer ${localStorage.getItem('token')}`, 
+                    'accept':'application/json'
+                },
             }
         ).then(
-            response =>response.json().then(resjson=> setClasses(resjson.exam)
-         )
+            response =>response.json()
+                .then(resjson=> setClasses(resjson.exam)
+            )
         ) 
-        return () => abortCtrl.abort();
+
     },[])
 
     const handleSubmit = () => {
            
             const newexam = {name};
-            console.log(newexam);
-            fetch (`http://127.0.0.1:8000/api/dashboard/createExam/${id}`,{
-                headers:{"Content-Type":'application/json', "accept":'application/json',  Authorization: `Bearer ${localStorage.getItem('token')}`},
+            const url = `http://127.0.0.1:8000/api/dashboard/createExam/${id}`
+            fetch (url,
+                {
+                headers:{
+                    "Content-Type":'application/json',
+                     "accept":'application/json',  
+                     Authorization: `Bearer ${localStorage.getItem('token')}`
+                },
                 method:'POST',
                 body:JSON.stringify(newexam),
-            }).then(response=>(
-                response.json().then(resjson=>{setMsg(resjson); 
-                    if(resjson.success===true){
-                        history.push({pathname:"/CreateQandA",state:resjson.exam})
-                    }
-                }
-                )
-            )
-        )
+                })
+                .then(response=>(
+                response.json()
+                    .then(resjson=>{setMsg(resjson); 
+                        if(resjson.success===true){
+                            history.push({
+                                pathname:"/CreateQandA",
+                                state:resjson.exam
+                            })
+                        }
+                    })
+                ))
             
         }
   
@@ -67,42 +70,57 @@ const CreateExam = () => {
                     </div>
                         <div className=" md:p-16 h-full gap-y-6 flex flex-col">
                             {msg.message}
-                            <input className="h-5 p-6 border rounded-md" type="text" placeholder="Quiz title" required value={name}  onChange={(e)=>setName(e.target.value)}/>
-                            <p className='text-blue-900 font-bold font-sans'>Classes:</p>
+                            <input className="h-5 p-6 border rounded-md" 
+                                type="text" 
+                                placeholder="Quiz title" 
+                                required 
+                                value={name}  
+                                onChange={(e)=>setName(e.target.value)}
+                            />
+                            <p className='text-blue-900 font-bold font-sans'>
+                                Classes:
+                            </p>
                             {classes.length===0?
                                 <>
-                                <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 w-32"><Link to='/CreateClass'>make class</Link></button>
+                                <Link to='/CreateClass'>
+                                    <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2 w-32">
+                                    make class
+                                    </button>
+                                </Link>
                                 </>
                                 :
                                 <>
                                 <div className="flex space-x-2.5">
                                 {classes.map((item)=>
-                                <div key={item.id}>
-                                
-                                    <button className="focus:outline-none focus:ring-2 focus:bg-gray-500 rounded-md bg-gray-400 text-blue-900 text-xs font-bold font-sans" value={item.id} onClick={(e)=>setID(e.target.value)}>{item.subject}<br/>{item.section}</button>
-                                   
-                                </div>)}
+                                    <div key={item.id}>
+                                    
+                                        <button className="focus:outline-none focus:ring-2 focus:bg-gray-500 rounded-md bg-gray-400 text-blue-900 text-xs font-bold font-sans" 
+                                            value={item.id} 
+                                            onClick={(e)=>setID(e.target.value)}>
+                                                {item.subject}<br/>
+                                                {item.section}
+                                        </button>
+                                    </div>
+                                )}
                                 </div>
                                 </>
                             }
                                 <div className = "flex justify-end ">
-                                    <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end"> <Link to="/dashboard">Cancel </Link></button>
-                                    <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " onClick={handleSubmit}>Next </button>
+                                    <Link to="/dashboard">
+                                        <button className= "text-blue-900 hover:text-blue-600 font-medium text-lg px-4 py-1.5 items-end"> 
+                                            Cancel 
+                                        </button>
+                                    </Link>
+                                    <button className= "block bg-blue-900 hover:bg-blue-600 shadow-lg text-white py-1.5 px-4 rounded-md " 
+                                        onClick={handleSubmit}>
+                                            Next 
+                                    </button>
                                 </div>
                         </div>
                     </div>
                 </div>
-            
             </>
-            
-          
-              
-           
-       
-      
        )
-       
-    
 }
 
 
