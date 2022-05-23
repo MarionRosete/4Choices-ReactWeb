@@ -108,14 +108,14 @@ function QandA(props){
                 </div>
                 <br/>
                 <div className="flex justify-between items-center md:space-x-32">
-                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
+                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 md:transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
                         onClick={() => handleAnswerOptionClick()} 
                     >
                         1.{data[currentQuestion].answer1}
                     </button>
                     <br/>
 
-                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
+                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 md:transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
                         onClick={() => handleAnswerOptionClick()} 
                     >
                         2.{data[currentQuestion].answer2}
@@ -123,14 +123,14 @@ function QandA(props){
                 </div>
                 
                 <div className="flex justify-between items-center md:space-x-32">
-                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
+                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 md:transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
                         onClick={() => handleAnswerOptionClick()} 
                     >
                         3.{data[currentQuestion].answer3}
                     </button>
                     <br/>
 
-                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
+                    <button className=" mr-2 transition duration-500 ease-in-out hover:bg-blue-400 md:transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 hover:bg-blue-500  border rounded-md p-2 my-2 w-1/2 text-white font-bold font-sans"  
                         onClick={() => handleAnswerOptionClick()} 
                     >
                         4.{data[currentQuestion].answer4}
