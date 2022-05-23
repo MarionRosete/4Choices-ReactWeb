@@ -29,7 +29,7 @@ function Classes() {
                 No Classes yet
                 </p>
                 <Link to='/CreateClass'>
-                    <button className="transition duration-500 ease-in-out hover:bg-blue-400 transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2">
+                    <button className="transition duration-500 ease-in-out hover:bg-blue-400 md:transform hover:-translate-y-1 hover:scale-100 rounded-md bg-blue-900 text-white font-bold font-sans p-2">
                         Create Class
                     </button>
                 </Link>
